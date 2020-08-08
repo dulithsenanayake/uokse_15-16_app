@@ -1,0 +1,17 @@
+<mat-toolbar color="">
+
+  <img src="../../assets/logo.png" height="50">
+  <a href="/" style="text-decoration: none">
+    <span>UOKSE 15/16</span>
+  </a>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+
+  <span *ngIf="!authenticated" (click)="login()">
+    <button mat-raised-button>Login</button>
+  </span>
+  <span *ngIf="authenticated" (click)="logout()">
+    <button mat-raised-button>Logout</button>
+  </span>
+</mat-toolbar>
