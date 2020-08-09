@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   profile: any;
   displayedColumns: string[] = ['id','stu_no','name'];
   data = [];
+  resorces = null;
   @ViewChild("fileUpload") fileUpload: ElementRef;
   files  = [];
   constructor(private adalService: AdalService, protected http: HttpClient,protected homeService:HomeService) { }
@@ -46,6 +47,7 @@ export class HomeComponent implements OnInit {
         console.log(result);
         this.data = result['data']['result'];
         this.dataSource.data = this.data;
+        this.resorces = result['source'];
       }
     });
   }

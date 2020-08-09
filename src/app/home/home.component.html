@@ -1,6 +1,8 @@
 <mat-card style="width: 600px; overflow: elipses; margin: 0 auto; margin-top: 30px;">
 <div class="mat-elevation-z8">
-
+  <div *ngIf="resorces" class="alert alert-primary" role="alert">
+    data retrieved from {{resorces}}
+  </div>
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> Id.</th>
@@ -30,9 +32,6 @@
     Add Submission
   </button>
   <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
-</div>
-<div class="alert alert-primary" role="alert">
-  This is a primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
 </div>
 
 
