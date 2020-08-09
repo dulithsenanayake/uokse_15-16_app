@@ -9,9 +9,9 @@
   <span class="fill-remaining-space"></span>
 
   <span *ngIf="!authenticated" (click)="login()">
-    <button mat-raised-button>Login</button>
+    <button mat-raised-button color="primary">Login</button>
   </span>
   <span *ngIf="authenticated" (click)="logout()">
-    <button mat-raised-button>Logout</button>
+    <button mat-raised-button color="primary">Logout</button>
   </span>
 </mat-toolbar>

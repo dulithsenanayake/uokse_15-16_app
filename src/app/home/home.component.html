@@ -1,17 +1,4 @@
-
-<!--<pre>-->
-<!--{{user | json}}-->
-<!--</pre>-->
-<!--</mat-card>-->
-<!--<p>-->
-<!--<button name="Profile" (click)="profileClicked()">Get My Profile</button>-->
-<!--</p>-->
-<!--<mat-card *ngIf="profile" style="width: 650px; overflow: elipses; margin: 0 auto; margin-top: 30px;">-->
-<!--<pre>-->
-<!--{{profile | json}}-->
-<!--</pre>-->
-
-<mat-card style="width: 600px; overflow: elipses; margin: 0 auto; margin-top: 50px;">
+<mat-card style="width: 600px; overflow: elipses; margin: 0 auto; margin-top: 30px;">
 <div class="mat-elevation-z8">
 
   <table mat-table [dataSource]="dataSource">
@@ -27,14 +14,6 @@
       <th mat-header-cell *matHeaderCellDef> Name.</th>
       <td mat-cell *matCellDef="let element"> {{element.name}}</td>
     </ng-container>
-    <ng-container matColumnDef="fileupload">
-      <th mat-header-cell *matHeaderCellDef>  </th>
-      <td mat-cell *matCellDef="let element">
-        <div class="example-button-container">
-          <button mat-raised-button color="primary">Upload Image</button>
-        </div>
-      </td>
-    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -46,5 +25,14 @@
   </mat-paginator>
 </div>
 </mat-card>
+<div style="text-align:center; margin-top: 10px; ">
+  <button mat-raised-button color="warn" (click)="onClick()">
+    Add Submission
+  </button>
+  <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
+</div>
+<div class="alert alert-primary" role="alert">
+  This is a primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
 
 
