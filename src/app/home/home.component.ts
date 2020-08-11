@@ -14,6 +14,7 @@ import {of} from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
+  isLoading: boolean = true;
   user: any;
   profile: any;
   displayedColumns: string[] = ['id','stu_no','name'];
@@ -47,41 +48,34 @@ export class HomeComponent implements OnInit {
         console.log(result);
         this.data = result['data']['result'];
         this.dataSource.data = this.data;
-        this.resorces = result['source'];
+        this.resorces = 'Data Retrieved from '+ result['source'];
+        this.isLoading = false;
+      }
+    });
+  }
+  uploadFile(file) {
+
+    const formData = new FormData();
+    formData.append('image', file.data);
+    this.homeService.upload(formData).subscribe({
+      next: result => {
+        console.log(result);
+        if (result['statusCode'] == 200) {
+          this.resorces = "Image uploaded successfully!"
+        } else {
+          this.resorces = "Image uploading failed!"
+        }
       }
     });
   }
 
-  uploadFile(file) {
-    const formData = new FormData();
-    formData.append('file', file.data);
-    file.inProgress = true;
-    this.homeService.upload(formData).pipe(
-      map(event => {
-        switch (event.type) {
-          case HttpEventType.UploadProgress:
-            file.progress = Math.round(event.loaded * 100 / event.total);
-            break;
-          case HttpEventType.Response:
-            return event;
-        }
-      }),
-      catchError((error: HttpErrorResponse) => {
-        file.inProgress = false;
-        return of(`${file.data.name} upload failed.`);
-      })).subscribe((event: any) => {
-      if (typeof (event) === 'object') {
-        console.log(event.body);
-      }
-    });
-  }
   private uploadFiles() {
     this.fileUpload.nativeElement.value = '';
-    this.files.forEach(file => {
-      this.uploadFile(file);
-    });
+      this.uploadFile(this.files[0]);
   }
-  onClick() {
+
+  onClick()
+  {
     const fileUpload = this.fileUpload.nativeElement;
     fileUpload.onchange = () => {
       for (let index = 0; index < fileUpload.files.length; index++)

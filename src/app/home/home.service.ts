@@ -6,13 +6,13 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HomeService {
 
-  SERVER_URL: string = "https://file.io/";
+  SERVER_URL: string = "https://redis-cache-app.azurewebsites.net/file/upload";
   constructor(private httpClient: HttpClient) { }
   public upload(formData) {
 
     return this.httpClient.post<any>(this.SERVER_URL, formData, {
-      reportProgress: true,
-      observe: 'events'
+      // reportProgress: true,
+      // observe: 'events'
     });
   }
 }
